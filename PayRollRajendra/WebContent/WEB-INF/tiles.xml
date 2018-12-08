@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <!DOCTYPE tiles-definitions PUBLIC  
+           "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+           "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Common Base layout -->
+	<definition name="base.definition" template="/baselayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/header.jsp" />
+		<put-attribute name="menu" value="/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+	<!-- Login Base layout -->
+	<definition name="base.adminLogin" template="/baselayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/header.jsp" />
+		<put-attribute name="menu" value="/" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+	<!-- Login Page -->
+	<definition name="LoginPage" extends="base.adminLogin">
+		<put-attribute name="title" value="Login Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp"></put-attribute>
+	</definition>
+
+<!-- Home Page -->
+	<definition name="HomePage" extends="base.definition">
+		<put-attribute name="title" value="Home Page"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/jsp/home.jsp"></put-attribute>
+	</definition>
+
+ 
+   
+   
+     <!-- Display Manager Master Page -->
+  <definition name="ManagerMasterPage" extends="base.adminLogin">
+    <put-attribute name="title" value="  Company  Master Page "></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/jsp/master/ManagerMaster.jsp"></put-attribute>
+  </definition>
+  
+   
+   <!-- Display Company Master Page -->
+  <definition name="CompanyMasterPage" extends="base.adminLogin">
+    <put-attribute name="title" value="  Company  Master Page "></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/jsp/master/CompanyMaster.jsp"></put-attribute>
+  </definition>
+  
+  <!-- Display SuperVisor Master Page -->
+   <definition name="SuperVisorMasterPage" extends="base.adminLogin">
+   <put-attribute name="title" value=" SuperVisor Master Page"></put-attribute>
+   <put-attribute name="body" value="/WEB-INF/jsp/master/SuperVisorMaster.jsp"></put-attribute>
+   </definition>
+   
+   
+  
+   <!-- Display Ledger Master Page -->
+   <definition name="LedgerMasterPage" extends="base.adminLogin">
+   <put-attribute name="title" value="Ledger Master Page"></put-attribute>
+   <put-attribute name="body" value="/WEB-INF/jsp/master/LedgerMaster.jsp"></put-attribute>
+   </definition>
+    
+    
+    
+    <!-- Display Employee Enquiry page -->
+    <definition name="EnquiryPage" extends="base.adminLogin">
+    <put-attribute name="title" value="Enquiry  Page"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/jsp/Enquiry/EnquiryPage.jsp"></put-attribute>
+    </definition>
+   
+   
+    <!-- Display Employee Registration page -->
+    <definition name="EmployeePage" extends="base.adminLogin">
+    <put-attribute name="title" value="Employee Page"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/jsp/Employee/EmployeePage.jsp"></put-attribute>
+    </definition>
+   
+   
+   
+   
+   
+   
+   
+</tiles-definitions>  

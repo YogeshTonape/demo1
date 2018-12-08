@@ -1,0 +1,87 @@
+package com.admin.controller;
+
+
+ import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+
+import com.admin.model.AdminModel;
+
+import com.admin.service.AdminServiceInterface;
+ 
+ @Controller
+ 
+  public class AdminController
+    {
+	@Autowired
+	AdminServiceInterface adminserviceinterface;
+	
+	
+    @RequestMapping("login")
+	public ModelAndView loginPage()
+	{	System.out.println("Login Controller");
+		return new ModelAndView("LoginPage");
+		
+	}
+
+	@RequestMapping(value = "adminLogin", method = RequestMethod.POST)
+	public ModelAndView loginAdmin(@RequestParam("username") String Username,
+			@RequestParam("password") String Password, Model model, HttpServletRequest httpServletRequest) {
+
+		System.out.println("USername = " + Username + " Password = " + Password);
+        System.out.println("Inside login controller");
+		HttpSession httpSession = httpServletRequest.getSession();
+        AdminModel admin = null;
+
+		admin = adminserviceinterface.loginAdmin(Username, Password);
+
+		
+		if (admin != null) {
+			
+			System.out.println("admin.getUsername()"+admin.getUsername());
+			System.out.println("admin.getPassword()"+admin.getPassword());
+			
+			if (admin.getUsername().equals(Username) && admin.getPassword().equals(Password)) {
+				System.out.println("Login Successful");
+
+				httpSession.setAttribute("adminSession", admin.getId());
+
+				 model.addAttribute("errorMsg", "Login Success!");
+				return new ModelAndView("HomePage");
+			}
+
+		}
+
+		System.out.println("Invalid User");
+		model.addAttribute("errorMsg", "Invalid User!");
+
+		return new ModelAndView("LoginPage");
+	}
+}
+
+	
+
+/*@RequestMapping("home")
+public ModelAndView homePage(Model model, HttpServletRequest req)
+{	
+	HttpSession httpSession = req.getSession();
+	
+	System.out.println("Home Controller");
+	
+	return new ModelAndView("HomePage");
+	
+	}
+}
+*/	
+
+	
+	

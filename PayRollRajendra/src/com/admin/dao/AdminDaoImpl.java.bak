@@ -1,0 +1,61 @@
+package com.admin.dao;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.admin.model.AdminModel;
+
+
+ 
+ @Controller
+   public class AdminDaoImpl  implements AdminDaoInterface
+    {
+	@Autowired
+	SessionFactory sessionFactory;
+
+	protected Session currentSession()
+	{
+		return sessionFactory.openSession();
+	}
+	@Override
+	public void updateAdmin(AdminModel admin) {
+		// TODO Auto-generated method stub
+	
+		sessionFactory.getCurrentSession().update(admin);
+	}
+
+	@Override
+	public AdminModel loginAdmin(String Username, String Password) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Inside Dao controller");
+		Criteria criteria;
+		AdminModel admin=null;
+
+		criteria = currentSession().createCriteria(AdminModel.class).add(Restrictions.eq("username", Username));
+		criteria = currentSession().createCriteria(AdminModel.class).add(Restrictions.eq("password", Password));
+
+		
+	admin = (AdminModel) criteria.setMaxResults(1).uniqueResult();
+		
+		return admin;
+	
+		
+		
+	}
+
+	@Override
+	public List<AdminModel> getAdminId(int adminId) {
+		// TODO Auto-generated method stub
+		
+		
+		return currentSession().createCriteria(AdminModel.class).add(Restrictions.idEq(adminId)).list();
+	}
+
+}

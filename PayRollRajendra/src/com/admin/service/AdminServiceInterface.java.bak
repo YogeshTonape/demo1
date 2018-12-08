@@ -1,0 +1,14 @@
+package com.admin.service;
+
+import java.util.List;
+import com.admin.model.AdminModel;
+
+
+public interface AdminServiceInterface
+ {
+	public void updateAdmin(AdminModel admin);
+
+	public AdminModel loginAdmin(String Username, String Password);
+
+	public List<AdminModel> getAdminId(int adminId);
+ }

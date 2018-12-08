@@ -1,0 +1,19 @@
+package com.admin.dao;
+
+import java.util.List;
+
+import com.admin.model.AdminModel;
+
+public interface AdminDaoInterface 
+{
+	
+	public void updateAdmin(AdminModel admin);
+
+	public AdminModel loginAdmin(String Username, String Password);
+
+	public List<AdminModel> getAdminId(int adminId);
+
+	
+
+	
+}
